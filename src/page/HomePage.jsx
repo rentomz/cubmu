@@ -13,14 +13,29 @@ export default function HomePage() {
   const tabs = ['All', 'Food', 'Movies', 'Shop', 'Travel', 'Other'];
 
   const allCoupons = useSelector((state) => state.coupons.data);
-
+  const [Coupon, setCoupon] = useState(null);
   //Popup
   const [popupButton, setPopupButton] = useState(false);
   const [detailCoupon, setdetailCoupon] = useState({});
 
   useEffect(() => {
     dispatch(getCoupons());
+    if (allCoupons != null) {
+      setCoupon(allCoupons.result);
+    }
   }, [allCoupons]);
+
+  const filterItem = (val) => {
+    const newItem = allCoupons.result.filter((el) => {
+      return el.couponCategoryName == val;
+      // comparing category for displaying data
+    });
+    if (val == 'All' || val == 'Other') {
+      setCoupon(allCoupons.result);
+    } else {
+      setCoupon(newItem);
+    }
+  };
 
   return (
     <section id="home">
@@ -42,24 +57,24 @@ export default function HomePage() {
                         ? 'border-[#DF4949] text-white'
                         : ' text-gray-500 border-[#68696A]'
                     }`}
-                    onClick={() => setActiveTab(index)}
+                    onClick={() => {
+                      setActiveTab(index);
+                      filterItem(tabs[index]);
+                    }}
                   >
-                    <a
-                      href="#"
-                      className="inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-white"
-                    >
+                    <button className="cursor-pointer inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-white">
                       <img src={Ic_menu} className=" mr-2" alt="" />
                       {value}
-                    </a>
+                    </button>
                   </li>
                 );
               })}
             </ul>
           </div>
 
-          {allCoupons != null ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3  gap-6 relative my-8">
-              {allCoupons.result.map((value, index) => {
+          {Coupon != null ? (
+            <div className="grid grid-cols-1 justify-items-center lg:grid-cols-3  gap-6 relative my-8">
+              {Coupon.map((value, index) => {
                 return (
                   <div
                     className="max-w-sm rounded overflow-hidden shadow-lg bg-white"
@@ -116,8 +131,35 @@ export default function HomePage() {
             <Loader />
           )}
         </div>
-      <Popup trigger={popupButton} setTrigger={setPopupButton} coupon={detailCoupon} />
-
+        <Popup
+          trigger={popupButton}
+          setTrigger={setPopupButton}
+          coupon={detailCoupon}
+        />
+      </div>
+      <div className="bg-[#1E1F26] lg:hidden fixed bottom-0 left-0 mx-auto w-full overflow-y-auto z-50">
+        <ul className="inline-flex">
+          {tabs.map((value, index) => {
+            return (
+              <li
+                key={index}
+                className={`cursor-pointer transition border-b-2 flex-auto  ${
+                  ActiveTab === index
+                    ? 'border-[#DF4949] text-white'
+                    : ' text-gray-500 border-[#68696A]'
+                }`}
+                onClick={() => {
+                  setActiveTab(index);
+                  filterItem(tabs[index]);
+                }}
+              >
+                <button className="cursor-pointer inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-white">
+                  {value}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
