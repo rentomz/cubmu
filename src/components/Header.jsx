@@ -8,7 +8,7 @@ export default function Header() {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <header class="sticky top-0 z-50">
+    <header className="sticky top-0 z-50">
       <nav className="w-full bg-[#1E1F26] shadow">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl lg:items-center lg:flex lg:px-24">
           <div>
@@ -17,42 +17,39 @@ export default function Header() {
                 <img src={IC_Logo} alt="Icon Logo" className="h-[36px]" />
               </a>
               <div className="lg:hidden">
-                <button
-                  className="p-2 text-[#B1B2B3] rounded-md outline-none focus:border-gray-400 focus:border"
-                  onClick={() => setNavbar(!navbar)}
-                >
-                  {navbar ? (
-                    //Hamburger Open || Cross
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                <ul className="items-center justify-center flex space-x-4 sm:space-x-8">
+                  <li className="text-gray-600 ">
+                    <button className="cursor-pointer my-auto">
+                      <img src={IC_Search} alt="" />
+                    </button>
+                  </li>
+                  <li className="text-gray-600 ">
+                    <button className="cursor-pointer">
+                      <img src={IC_Notif} alt="" />
+                    </button>
+                  </li>
+                  <li className="text-white">
+                    <button
+                      className="cursor-pointer inline-flex w-full justify-center py-2 my-auto items-center "
+                      onClick={() => setNavbar(!navbar)}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ) : (
-                    //Hamburger Close ||
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
-                    </svg>
-                  )}
-                </button>
+                      <img src={IC_Premium} alt="" />
+                      <svg
+                        className="-mr-1 ml-2 h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -74,16 +71,16 @@ export default function Header() {
                   <a href="/" className="inline-flex">
                     KATEGORI
                     <svg
-                      class="-mr-1 ml-2 h-5 w-5"
+                      className="-mr-1 ml-2 h-5 w-5"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </a>
@@ -97,7 +94,7 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          <div className="avatar-icon">
+          <div className="avatar-icon hidden lg:block">
             <div
               className={`flex-1 justify-self-center pb-3 mt-8 lg:block lg:pb-0 lg:mt-0 ${
                 navbar ? 'block' : 'hidden'
@@ -119,16 +116,16 @@ export default function Header() {
                     <img src={IC_Premium} alt="" />
                     <p className="text-sm font-semibold mx-2">BERUANGAIR</p>
                     <svg
-                      class="-mr-1 ml-2 h-5 w-5"
+                      className="-mr-1 ml-2 h-5 w-5"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>
